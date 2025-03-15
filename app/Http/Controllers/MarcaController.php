@@ -75,7 +75,18 @@ class MarcaController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        //
+{
+    try {
+        $marca = Marca::find($id);
+
+        if (!$marca) {
+            return response()->json(['message' => 'Marca no encontrada'], 404);
+        }
+
+        $marca->delete();
+        return response()->json(['message' => 'Marca eliminada con éxito'], 200);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
+}
 }

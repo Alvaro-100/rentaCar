@@ -5,26 +5,27 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Ruta para la página de inicio
-Route::get('/', function () {
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+Route::get('/',function(){
     return Inertia::render('CatalogoVehiculos');
 })->name('CatalogoVehiculos');
 
-// Ruta para el dashboard general
+Route::get('/Marcas', function () {
+    return Inertia::render('interfazadmin/Marcas');
+})->middleware(['auth', 'verified'])->name('Marcas');
+
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Rutas protegidas por middleware de autenticación y roles
-    Route::get('/admin', function () {
-        return Inertia::render('AdminDashboard');
-    })->name('admin.dashboard');
-
-    Route::get('/Cliente', function () {
-        return Inertia::render('ClientDashboard');
-    })->name('Client.dashboard');
-
-// Rutas protegidas por middleware de autenticación
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

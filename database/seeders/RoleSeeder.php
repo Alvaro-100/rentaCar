@@ -18,8 +18,8 @@ class RoleSeeder extends Seeder
         $role2 = Role::Create(['name' => 'Cliente']);
 
         //definimos algunos permisos 
-        $permission1 = Permission::create(['name' => 'Gestión de ordenes']);
-        $permission2 = Permission::create(['name' => 'Generar ordenes']);
+        $permiso1 = Permission::create(['name' => 'Gestión de ordenes']);
+        $permiso2 = Permission::create(['name' => 'Generar ordenes']);
     }
 }
 
