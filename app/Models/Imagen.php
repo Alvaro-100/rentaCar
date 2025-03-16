@@ -11,14 +11,14 @@ class Imagen extends Model
 
     protected $table = 'imagenes';
 
-    protected $fillable = ['nombre', 'vehiculo_id'];
+    protected $fillable = ['vehiculo_id', 'nombre'];
 
     public $timestamps = false;
 
     // Relación: Una imagen pertenece a un vehículo
     public function vehiculo()
-{
-    return $this->belongsTo(Vehiculo::class, 'vehiculo_id');
-}
+    {
+        return $this->belongsTo(Vehiculo::class, 'vehiculo_id');
+    }
 
 }

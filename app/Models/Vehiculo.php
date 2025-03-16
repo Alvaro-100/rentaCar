@@ -10,22 +10,19 @@ class Vehiculo extends Model
     use HasFactory;
     
     protected $fillable = [
-        'matricula', 'modelo', 'precio', 'descripcion', 
+        'matricula', 'modelo', 'precio', 'descripcion', 'disponibilidad', 
         'aire_acondicionado', 'conexion_bluetooth', 'marca_id'
     ];
 
+    // Relación con la tabla `imagenes`
+    public function imagenes()
+    {
+        return $this->hasMany(Imagen::class);
+    }
+
+    // Relación con la tabla `marca`
     public function marca()
     {
         return $this->belongsTo(Marca::class);
-    }
-
-    public function imagenes()
-{
-    return $this->hasMany(Imagen::class, 'vehiculo_id');
-}
-
-    public function detallesReservas()
-    {
-        return $this->hasMany(DetalleReserva::class);
     }
 }

@@ -27,6 +27,9 @@ import Textarea from 'primevue/textarea';
 import InputNumber from 'primevue/inputnumber';
 import AutoComplete from 'primevue/autocomplete';
 import Select from 'primevue/select';
+import Checkbox from 'primevue/checkbox';
+import { useToast } from 'primevue';
+
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -63,6 +66,8 @@ createInertiaApp({
             app.component('FileUpload',FileUpload);
             app.component('AutoComplete',AutoComplete);
             app.component('Select',Select);
+             app.component('Checkbox',Checkbox);
+            app.component('Toast', useToast);
             
             app.mount(el);
             return app;
