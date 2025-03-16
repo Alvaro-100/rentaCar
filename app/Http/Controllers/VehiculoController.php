@@ -106,7 +106,7 @@ class VehiculoController extends Controller
     public function show(string $id)
     {
         try {
-            $vehiculo = Vehiculo::with('imagenes')->findOrFail($id);
+            $vehiculo = Vehiculo::with('imagenes','marcas')->findOrFail($id);
             return response()->json($vehiculo);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

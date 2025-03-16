@@ -13,6 +13,7 @@ use Inertia\Inertia;
 //         'phpVersion' => PHP_VERSION,
 //     ]);
 // });
+
 Route::get('/',function(){
     return Inertia::render('CatalogoVehiculos');
 })->name('CatalogoVehiculos');
@@ -21,6 +22,9 @@ Route::get('/Marcas', function () {
     return Inertia::render('interfazadmin/Marcas');
 })->middleware(['auth', 'verified'])->name('Marcas');
 
+Route::get('/Vehiculo', function () {
+    return Inertia::render('interfazadmin/Vehiculo');
+})->middleware(['auth', 'verified'])->name('Vehiculo');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -13,7 +13,6 @@ import Aura from '@primeuix/themes/aura';
 
 import { ToastService } from 'primevue';
 import 'primeicons/primeicons.css';
-
 //importaciones de los componentes de PrimeVue
 import Toolbar  from 'primevue/toolbar';
 import DataTable  from 'primevue/datatable';
@@ -42,7 +41,6 @@ createInertiaApp({
         const app = createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
-            .use(PrimeVue);
             //configuracion global de sweetalert2
             app.config.globalProperties.$swal = Swal;
             app.use(PrimeVue, {
@@ -59,6 +57,9 @@ createInertiaApp({
             app.component('InputIcon',InputIcon);
             app.component('IconField ',IconField);
             app.component('Button',Button);
+            app.component('Textarea',Textarea);
+            app.component('InputNumber',InputNumber);
+            app.component('InputIcon',InputIcon);
             app.component('FileUpload',FileUpload);
             app.component('AutoComplete',AutoComplete);
             app.component('Select',Select);
