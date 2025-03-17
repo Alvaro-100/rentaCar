@@ -1,11 +1,11 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
-import { ref, onMounted, computed } from 'vue';
-import { FilterMatchMode } from '@primevue/core/api';
-import { Toast } from 'primevue';
-import { useToast } from 'primevue/usetoast';
-import axios from 'axios';
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import { Head } from "@inertiajs/vue3";
+import { ref, onMounted, computed } from "vue";
+import { FilterMatchMode } from "@primevue/core/api";
+import { Toast } from "primevue";
+import { useToast } from "primevue/usetoast";
+import axios from "axios";
 
 onMounted(() => {
     fetchVehiculos();
@@ -98,12 +98,12 @@ const saveOrUpdate = async () => {
         try {
             let response;
             if (vehiculo.value.id) {
+                formData.append("_method", "PUT");
                 response = await axios.post(
                     `${urlVehiculos}/${vehiculo.value.id}`,
                     formData,
                     {
                         headers: { "Content-Type": "multipart/form-data" },
-                        _method: "PUT",
                     }
                 );
             } else {
@@ -320,8 +320,7 @@ const btnTitle = computed(() => (vehiculo.value.id ? "Actualizar" : "Guardar"));
                                                 .imagenes"
                                             :key="img.id"
                                             :src="
-                                                '/images/vehiculo/' +
-                                                img.nombre
+                                                '/images/vehiculo/' + img.nombre
                                             "
                                             alt="Imagen del vehículo"
                                             class="w-16 h-12 object-cover"
@@ -400,11 +399,24 @@ const btnTitle = computed(() => (vehiculo.value.id ? "Actualizar" : "Guardar"));
                                 >
                             </div>
                             <div class="col-span-6">
-                                <label for="precio" >Precio</label>
-                               <InputNumber id="precio" v-model="vehiculo.precio"
-                                mode="currency" currency="USD" locale="en-US" fluid
-                                :class="{ 'p-invalid': submitted && !vehiculo.precio }" />
-                                <small class="p-error  text-red-500" v-if="submitted && !vehiculo.precio">Precio es requerido.</small>
+                                <label for="precio">Precio</label>
+                                <InputNumber
+                                    id="precio"
+                                    v-model="vehiculo.precio"
+                                    mode="currency"
+                                    currency="USD"
+                                    locale="en-US"
+                                    fluid
+                                    :class="{
+                                        'p-invalid':
+                                            submitted && !vehiculo.precio,
+                                    }"
+                                />
+                                <small
+                                    class="p-error text-red-500"
+                                    v-if="submitted && !vehiculo.precio"
+                                    >Precio es requerido.</small
+                                >
                             </div>
                             <div>
                                 <label
@@ -458,11 +470,17 @@ const btnTitle = computed(() => (vehiculo.value.id ? "Actualizar" : "Guardar"));
                             </div>
                             <div class="col-span-6">
                                 <label for="marca">Marca</label>
-                                <Select v-model="vehiculo.marca" :options="marcas" 
-                                option-label="nombre" class="w-full"/>
-                                <small v-if="submitted && !vehiculo.marca"
-                                 class="text-red-500" >Seleccione una marca</small>
-
+                                <Select
+                                    v-model="vehiculo.marca"
+                                    :options="marcas"
+                                    option-label="nombre"
+                                    class="w-full"
+                                />
+                                <small
+                                    v-if="submitted && !vehiculo.marca"
+                                    class="text-red-500"
+                                    >Seleccione una marca</small
+                                >
                             </div>
                             <div>
                                 <label
