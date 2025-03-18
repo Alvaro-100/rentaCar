@@ -11,6 +11,9 @@ import Swal from 'sweetalert2';
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
 
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/swiper-bundle.css";
+
 import { ToastService } from 'primevue';
 import 'primeicons/primeicons.css';
 //importaciones de los componentes de PrimeVue
@@ -62,12 +65,13 @@ createInertiaApp({
             app.component('Button',Button);
             app.component('Textarea',Textarea);
             app.component('InputNumber',InputNumber);
-            app.component('InputIcon',InputIcon);
             app.component('FileUpload',FileUpload);
             app.component('AutoComplete',AutoComplete);
             app.component('Select',Select);
              app.component('Checkbox',Checkbox);
             app.component('Toast', useToast);
+            app.component('Swiper',Swiper);
+            app.component('SwiperSlide', SwiperSlide);
             
             app.mount(el);
             return app;

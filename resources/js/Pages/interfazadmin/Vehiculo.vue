@@ -3,7 +3,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { ref, onMounted, computed } from "vue";
 import { FilterMatchMode } from "@primevue/core/api";
-import { Toast } from "primevue";
 import { useToast } from "primevue/usetoast";
 import axios from "axios";
 

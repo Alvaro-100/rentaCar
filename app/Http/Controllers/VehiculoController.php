@@ -19,6 +19,14 @@ class VehiculoController extends Controller
     {
         try {
             $vehiculos = Vehiculo::with('imagenes', 'marca')->get();
+
+            // Añadir la URL completa de la imagen
+            $vehiculos->each(function ($vehiculo) {
+                $vehiculo->imagenes->each(function ($imagen) {
+                    $imagen->url = asset('images/vehiculo/' . $imagen->nombre);
+                });
+            });
+
             return response()->json($vehiculos);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -46,7 +54,6 @@ class VehiculoController extends Controller
             // Validar si ya existe un vehículo con los mismos datos
             $vali = Vehiculo::where("matricula", $vehiculoS["matricula"] ?? null)
                 ->where("descripcion", $vehiculoS["descripcion"] ?? null)
-                ->where("marca_id", $vehiculoS["marca"]["id"] ?? null)
                 ->first();
         
             if ($vali) {
