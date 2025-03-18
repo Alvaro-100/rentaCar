@@ -52,6 +52,18 @@ const logout = async () => {
         console.error("Error al cerrar la sesión", err);
     }
 };
+const alquilar = () => {
+    try {
+        if(user){
+           window.location.href = route('formulario');
+        }else{
+            window.alert("debes estar registrado para alqular")
+            window.location.href = '/login'
+        }
+    } catch (err) {
+        console.error("Error al cerrar la sesión", err);
+    }
+};
 </script>
 
 <template>
@@ -175,6 +187,7 @@ const logout = async () => {
                     <Button
                         label="Alquilar"
                         class="w-full bg-yellow-500 text-blue-900"
+                        @click="alquilar()"
                     />
                 </div>
             </div>

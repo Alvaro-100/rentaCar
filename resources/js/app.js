@@ -10,9 +10,8 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import Swal from 'sweetalert2';
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
-
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/swiper-bundle.css";
+import Swiper from 'swiper';
+import { SwiperSlide } from 'vue-awesome-swiper';
 
 import { ToastService } from 'primevue';
 import 'primeicons/primeicons.css';
@@ -70,8 +69,6 @@ createInertiaApp({
             app.component('Select',Select);
              app.component('Checkbox',Checkbox);
             app.component('Toast', useToast);
-            app.component('Swiper',Swiper);
-            app.component('SwiperSlide', SwiperSlide);
             
             app.mount(el);
             return app;

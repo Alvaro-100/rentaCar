@@ -18,6 +18,10 @@ Route::get('/',function(){
     return Inertia::render('CatalogoVehiculos');
 })->name('CatalogoVehiculos');
 
+Route::get('/formCliente',function(){
+    return Inertia::render('formCliente');
+})->middleware(['auth', 'verified'])->name('formulario');
+
 // Route::get('/ClienteVehiculo',function(){
 //     return Inertia::render('interfazcliente/ClienteVehiculo');
 // })->name('clienteVehiculo');
