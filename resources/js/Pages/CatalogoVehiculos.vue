@@ -55,7 +55,7 @@ const logout = async () => {
 const alquilar = () => {
     try {
         if(user){
-           window.location.href = route('formulario');
+           window.location.href = 'formCliente';
         }else{
             window.alert("debes estar registrado para alqular")
             window.location.href = '/login'

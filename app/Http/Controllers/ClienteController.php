@@ -118,4 +118,8 @@ class ClienteController extends Controller
             return response()->json(['error'=>$e->getMessage()],500);
         }
     }
+    
+ public function informacionCliente(){
+    return view('formClient');
+ }
 }
