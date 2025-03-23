@@ -28,7 +28,7 @@
         "primeicons": "^7.0.0",
         "primevue": "^4.3.2",
         "sweetalert2": "^11.17.2",
-        "swiper": "^11.2.5",
+        "swiper": "^8.4.7",
         "vue": "^3.5.13",
         "vue-awesome-swiper": "^5.0.1"
     }

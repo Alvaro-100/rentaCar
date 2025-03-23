@@ -3,9 +3,14 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { ref, onMounted, computed } from "vue";
 import { FilterMatchMode } from "@primevue/core/api";
-import { Toast } from "primevue";
 import { useToast } from "primevue/usetoast";
 import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/swiper-bundle.css";
+import SwiperCore, { Navigation, Pagination } from "swiper";
+
+// Install modules
+SwiperCore.use([Navigation, Pagination]);
 
 onMounted(() => {
     fetchVehiculos();
@@ -27,6 +32,8 @@ const submitted = ref(false);
 const urlVehiculos = "http://127.0.0.1:8000/api/vehiculos";
 const urlMarcas = "http://127.0.0.1:8000/api/marcas";
 const imagenes = ref([]);
+const showModal = ref(false);
+const currentImages = ref([]);
 
 const openNew = () => {
     vehiculo.value = {
@@ -186,6 +193,16 @@ const dialogTitle = computed(() =>
     vehiculo.value.id ? "Edición de Vehículos" : "Registro de Vehículos"
 );
 const btnTitle = computed(() => (vehiculo.value.id ? "Actualizar" : "Guardar"));
+
+const openImageModal = (images) => {
+    currentImages.value = images;
+    showModal.value = true;
+};
+
+const closeImageModal = () => {
+    showModal.value = false;
+    currentImages.value = [];
+};
 </script>
 
 <template>
@@ -315,15 +332,13 @@ const btnTitle = computed(() => (vehiculo.value.id ? "Actualizar" : "Guardar"));
                             <Column header="Imágenes" style="min-width: 16rem">
                                 <template #body="slotProps">
                                     <div class="flex flex-wrap gap-2">
-                                        <img
-                                            v-for="img in slotProps.data
-                                                .imagenes"
-                                            :key="img.id"
-                                            :src="
-                                                '/images/vehiculo/' + img.nombre
+                                        <Button
+                                            icon="pi pi-image"
+                                            @click="
+                                                openImageModal(
+                                                    slotProps.data.imagenes
+                                                )
                                             "
-                                            alt="Imagen del vehículo"
-                                            class="w-16 h-12 object-cover"
                                         />
                                     </div>
                                 </template>
@@ -539,6 +554,27 @@ const btnTitle = computed(() => (vehiculo.value.id ? "Actualizar" : "Guardar"));
                                 @click="deleteVehiculo"
                             />
                         </template>
+                    </Dialog>
+
+                    <Dialog
+                        v-model:visible="showModal"
+                        :style="{ width: '40vw', height: '40vw' }"
+                        header="Imágenes del Vehículo"
+                        :modal="true"
+                        @hide="closeImageModal"
+                    >
+                        <Swiper :slides-per-view="1" navigation pagination>
+                            <SwiperSlide
+                                v-for="img in currentImages"
+                                :key="img.id"
+                            >
+                                <img
+                                    :src="'/images/vehiculo/' + img.nombre"
+                                    alt="Imagen del vehículo"
+                                    class="w-full h-full object-cover"
+                                />
+                            </SwiperSlide>
+                        </Swiper>
                     </Dialog>
                 </div>
             </div>

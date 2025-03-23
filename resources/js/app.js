@@ -10,6 +10,8 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import Swal from 'sweetalert2';
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
+import Swiper from 'swiper';
+import { SwiperSlide } from 'vue-awesome-swiper';
 
 import { ToastService } from 'primevue';
 import 'primeicons/primeicons.css';
@@ -62,7 +64,6 @@ createInertiaApp({
             app.component('Button',Button);
             app.component('Textarea',Textarea);
             app.component('InputNumber',InputNumber);
-            app.component('InputIcon',InputIcon);
             app.component('FileUpload',FileUpload);
             app.component('AutoComplete',AutoComplete);
             app.component('Select',Select);
