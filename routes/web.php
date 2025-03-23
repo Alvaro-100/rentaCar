@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function () {
 
 Route::post('formCliente',[ClienteController::class, 'informacionCliente'])->name('formCliente');
 
+
 Route::post('/Cliente', [ClienteController::class, 'store']);
+Route::post('/reserva', [ClienteController::class, 'store']);
 
 require __DIR__.'/auth.php';
